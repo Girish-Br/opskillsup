@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Grid Complete Demo</title>
+
+  <style>
+    /* ===== Reset & base styles ===== */
+    * {
+      box-sizing: border-box; /* Includes padding and border in element size calculations */
+      margin: 0;              /* Removes default margin */
+      padding: 0;             /* Removes default padding */
+    }
+
+    body {
+      font-family: Arial, sans-serif; /* Sets clean readable font */
+      background: #f4f4f4;            /* Light gray background */
+      padding: 20px;                  /* Space around content */
+    }
+
+    h1 {
+      margin-bottom: 20px;            /* Space below heading */
+    }
+
+    /* ===== Grid Container ===== */
+    .grid-container {
+      display: grid; /* Turns this element into a Grid container */
+
+      grid-template-columns: 1fr 2fr 1fr; 
+      /* Creates 3 columns: left & right = 1 fraction, middle = 2 fractions */
+
+      grid-template-rows: auto 150px auto;
+      /* Creates 3 rows with different sizing */
+
+      gap: 10px;
+      /* Space between grid items (row-gap + column-gap) */
+
+      grid-template-areas:
+        "header header header"
+        "sidebar main ads"
+        "footer-class footer-class footer-class";
+      /* Named layout areas for easier placement */
+
+      background: white;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    /* ===== Common Grid Item Style ===== */
+    .item {
+      padding: 20px;         /* Space inside each box */
+      color: white;          /* White text */
+      font-size: 18px;
+      text-align: center;    /* Centers text horizontally */
+      border-radius: 6px;
+    }
+
+    /* ===== Individual Grid Areas ===== */
+    .header {
+      grid-area: header;     /* Assigns this element to 'header' area */
+      background: #0077cc;
+    }
+
+    .sidebar {
+      grid-area: sidebar;    /* Assigns to sidebar area */
+      background: #e67e22;
+    }
+
+    .main {
+      grid-area: main;       /* Assigns to main area */
+      background: #2ecc71;
+
+      display: grid;         /* Nested grid inside main */
+      grid-template-columns: repeat(3, 1fr);
+      /* Creates 3 equal columns inside main */
+
+      gap: 10px;
+    }
+
+    .ads {
+      grid-area: ads;
+      background: #9b59b6;
+    }
+
+    .footer-class {
+      grid-area: footer-class;
+      background: #34495e;
+    }
+
+    /* ===== Items inside nested grid ===== */
+    .sub-item {
+      background: #1abc9c;
+      padding: 10px;
+      border-radius: 4px;
+    }
+
+    /* ===== Explicit positioning example ===== */
+    /* .ads {
+      grid-column: 3 / 4;
+      grid-row: 2 / 3;
+    } */
+
+    .footer-class {
+      align-self: center; /* Vertically center footer-class content */
+      justify-self: center; /* Horizontally center footer-class content */
+    }
+    
+    /* ===== Responsive behavior ===== */
+    /* Mobile: Single column layout (320px - 767px) */
+    @media (max-width: 767px) {
+      .grid-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto auto;
+        grid-template-areas:
+          "header"
+          "main"
+          "sidebar"
+          "ads"
+          "footer-class";
+        background-color: #365e34;
+      }
+      .sub-item{
+        width: 60px;
+      }
+    }
+
+    /* Tablet: Two column layout (768px - 1439px) */
+    @media (min-width: 768px) and (max-width: 1439px) {
+      .grid-container {
+        grid-template-columns: 1fr 2fr;
+        grid-template-rows: auto auto auto;
+        grid-template-areas:
+          "header header"
+          "sidebar main"
+          "ads footer-class";
+        background-color: #392d7d;
+      }
+    }
+
+    /* Desktop: Three column layout (1440px and above) */
+    @media (min-width: 1440px) {
+      .grid-container {
+        grid-template-columns: 1fr 2fr 1fr;
+        grid-template-rows: auto 150px auto;
+        grid-template-areas:
+          "header header header"
+          "sidebar main ads"
+          "footer-class footer-class footer-class";
+        background-color: #3e0606;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>CSS Grid — Complete Example</h1>
+
+  <div class="grid-container">
+    <!-- Header area -->
+    <div class="item header">Header</div>
+
+    <!-- Sidebar area -->
+    <div class="item sidebar">Sidebar</div>
+
+    <!-- Main content with nested grid -->
+    <div class="item main">
+      <div class="sub-item">Card 1</div>
+      <div class="sub-item">Card 2</div>
+      <div class="sub-item">Card 3</div>
+      <div class="sub-item">Card 4</div>
+      <div class="sub-item">Card 5</div>
+      <div class="sub-item">Card 6</div>
+    </div>
+
+    <!-- Ads section -->
+    <div class="item ads">Ads</div>
+
+    <!-- Footer -->
+    <div class="item footer-class">Footer</div>
+  </div>
+
+</body>
+</html>
