@@ -1,0 +1,59 @@
+// Variables
+$primary-color: #4f46e5;
+$text-color: #1f2937;
+$border-radius: 8px;
+
+// Mixin
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Styles
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f3f4f6;
+  height: 100vh;
+  margin: 0;
+
+  @include center;
+}
+
+.container {
+  background: white;
+  padding: 2rem;
+  border-radius: $border-radius;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+  h1 {
+    color: $primary-color;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: $text-color;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.primary-btn {
+  background-color: $primary-color;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: $border-radius;
+  cursor: pointer;
+  transition: background 0.3s;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+}
+
+nav {
+    ul {
+        margin: 5px;
+    }
+}
